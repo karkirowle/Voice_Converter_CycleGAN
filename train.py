@@ -152,7 +152,7 @@ def train(filelist_A, filelist_B, model_dir, model_name, random_seed, val_fileli
 
             if epoch % 50 == 0:
                 print('Generating Validation Data A from B...')
-                for file in val_files_B
+                for file in val_files_B:
                     filepath = file
                     wav, _ = librosa.load(filepath, sr = sampling_rate, mono = True)
                     wav = wav_padding(wav = wav, sr = sampling_rate, frame_period = frame_period, multiple = 4)
@@ -173,13 +173,13 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description = 'Train CycleGAN model for datasets.')
 
-    train_A_dir_default = 'trainfiles_A.txt'
-    train_B_dir_default = 'trainfiles_B.txt'
-    model_dir_default = './model/sf1_tf2'
-    model_name_default = 'sf1_tf2.ckpt'
+    train_A_dir_default = 'uaspeech_CM01_train.txt'
+    train_B_dir_default = 'uaspeech_M11_train.txt'
+    model_dir_default = './model/CM01_M11'
+    model_name_default = 'CM01_F04.ckpt'
     random_seed_default = 0
-    validation_A_dir_default = 'valfiles_A.txt'
-    validation_B_dir_default = 'valfiles_B.txt'
+    validation_A_dir_default = 'uaspeech_CM01_test.txt'
+    validation_B_dir_default = 'uaspeech_M11_test.txt'
     output_dir_default = './validation_output'
     tensorboard_log_dir_default = './log'
 
@@ -200,8 +200,8 @@ if __name__ == '__main__':
     model_dir = argv.model_dir
     model_name = argv.model_name
     random_seed = argv.random_seed
-    val_filelist_A = None if argv.validation_A_dir == 'None' or argv.validation_A_dir == 'none' else argv.validation_A_dir
-    val_filelist_B = None if argv.validation_B_dir == 'None' or argv.validation_B_dir == 'none' else argv.validation_B_dir
+    val_filelist_A = None if argv.val_filelist_A == 'None' or argv.val_filelist_A == 'none' else argv.val_filelist_A
+    val_filelist_B = None if argv.val_filelist_B == 'None' or argv.val_filelist_B == 'none' else argv.val_filelist_B
     output_dir = argv.output_dir
     tensorboard_log_dir = argv.tensorboard_log_dir
 
