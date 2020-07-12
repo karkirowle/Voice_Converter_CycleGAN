@@ -142,7 +142,7 @@ def train(filelist_A, filelist_B, model_dir, model_name, random_seed, val_fileli
                     coded_sp_converted = np.ascontiguousarray(coded_sp_converted)
                     decoded_sp_converted = world_decode_spectral_envelop(coded_sp = coded_sp_converted, fs = sampling_rate)
                     wav_transformed = world_speech_synthesis(f0 = f0_converted, decoded_sp = decoded_sp_converted, ap = ap, fs = sampling_rate, frame_period = frame_period)
-                    librosa.output.write_wav(os.path.join(validation_A_output_dir, str(epoch), os.path.basename(file)), wav_transformed, sampling_rate)
+                    librosa.output.write_wav(os.path.join(validation_A_output_dir, "epoch_" + str(epoch) + "_" + os.path.basename(file)), wav_transformed, sampling_rate)
 
         if val_filelist_B is not None:
             with open(val_filelist_B) as f:
@@ -167,7 +167,7 @@ def train(filelist_A, filelist_B, model_dir, model_name, random_seed, val_fileli
                     coded_sp_converted = np.ascontiguousarray(coded_sp_converted)
                     decoded_sp_converted = world_decode_spectral_envelop(coded_sp = coded_sp_converted, fs = sampling_rate)
                     wav_transformed = world_speech_synthesis(f0 = f0_converted, decoded_sp = decoded_sp_converted, ap = ap, fs = sampling_rate, frame_period = frame_period)
-                    librosa.output.write_wav(os.path.join(validation_B_output_dir, str(epoch), os.path.basename(file)), wav_transformed, sampling_rate)
+                    librosa.output.write_wav(os.path.join(validation_B_output_dir, "epoch_" + str(epoch) + "_" +  os.path.basename(file)), wav_transformed, sampling_rate)
 
 if __name__ == '__main__':
 
